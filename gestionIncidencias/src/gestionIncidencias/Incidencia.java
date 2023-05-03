@@ -64,11 +64,4 @@ public class Incidencia {
 		
 		contador = contador + 1;
 	}
-	
-	// MÉTODOS
-	
-	public void resolverIncidencia(Incidencia incidencia, String solucion) {
-		incidencia.setEstado("Resuelto");
-		incidencia.setSolucion(solucion);		
-	}
 }
