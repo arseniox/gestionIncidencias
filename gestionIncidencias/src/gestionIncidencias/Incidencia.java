@@ -67,7 +67,7 @@ public class Incidencia {
 	
 	// MÉTODOS
 	
-	public static Incidencia crearIncidencia(int puesto, String descripcion, ArrayList<Incidencia> arrayListIncidencias) {
+	public static Incidencia registrarIncidencia(int puesto, String descripcion, ArrayList<Incidencia> arrayListIncidencias) {
 		
 		// Instanciamos una nueva incidencia y la añadimos a la lista de incidencias.
 		Incidencia nuevaInc = new Incidencia(puesto, descripcion);
