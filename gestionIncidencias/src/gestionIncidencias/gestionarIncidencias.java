@@ -5,23 +5,18 @@ import java.util.Scanner;
 
 public class gestionarIncidencias {
 	
-	public static void limpiarPantalla() {
-		System.out.print("\033[H\033[2J");  
-		System.out.flush();
-	}
-	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		ArrayList<Incidencia> arrayListIncidencias = new ArrayList<Incidencia>();
 		int opcion = 0;
 		int id;
 		int puesto;
+		int pendienteCount = 0;
 		String descripcion;
 		String solucion;
         
         while (opcion != 4) {
-        	limpiarPantalla();
-        	
+            
     		System.out.println();
             System.out.println("========================");
             System.out.println(" GESTIÓN DE INCIDENCIAS" );
@@ -39,9 +34,8 @@ public class gestionarIncidencias {
 
                         
             switch (opcion) {
-                case 1:
-                	limpiarPantalla();
-
+                case 1:                	
+                	
                     System.out.println("=========================");
                     System.out.println(" REGISTRO DE INCIDENCIAS" );
                     System.out.println("=========================");
@@ -61,7 +55,6 @@ public class gestionarIncidencias {
             		break;
             		
                 case 2:
-                	limpiarPantalla();
 
                     System.out.println("========================");
                     System.out.println("  RESOLVER INCIDENCIA"   );
@@ -78,7 +71,8 @@ public class gestionarIncidencias {
             		// Una vez la encontramos actualizamos su estado a "Resuelto" y hacemos lo mismo añadiendo la solución que pediremos en el programa principal.
             		for (Incidencia incidencia : arrayListIncidencias) {
             			if (incidencia.getId() == id) {
-            				incidencia.resolverIncidencia(incidencia, solucion);
+            				incidencia.setEstado("Resuelto");
+            				incidencia.setSolucion(solucion);	
             				break;
             			}
             		}
@@ -94,23 +88,28 @@ public class gestionarIncidencias {
                  // Iteramos a través del arraylist de incidencias y vamos mostrando los atributos de cada incidencia, antes comprobando si su estado es "Pendiente", 
             		// en cuyo caso no imprimiremos su atributo "solucion", ya que está vacío; en caso contrario, sí imprimiremos todos sus atributos.
             		for (Incidencia incidencia : arrayListIncidencias) {
+            			            			
             			if (incidencia.getEstado() == "Pendiente") {
             				System.out.println("Incidencia: " + incidencia.getId() +
             								   " - Puesto: " +  incidencia.getPuesto() +
             								   " - " + incidencia.getDescripcion() + 
-            								   " - Estado: " +  incidencia.getEstado()
+            								   " - " +  incidencia.getEstado()
             								   );
+            				pendienteCount++;
             			}
             			else {
             				System.out.println("Incidencia: " + incidencia.getId() +
             								   " - Puesto: " +  incidencia.getPuesto() +
             								   " - " + incidencia.getDescripcion() + 
-            								   " - Estado: " +  incidencia.getEstado() +
+            								   " - " +  incidencia.getEstado() +
             								   " - " + incidencia.getSolucion()
             								   );
             			}
             		}
             		
+                    System.out.println("Incidencias pendientes: " + pendienteCount);
+    				pendienteCount = 0;
+                    
                     System.out.println("");
                     break;
                 case 4:
